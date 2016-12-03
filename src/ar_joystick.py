@@ -5,6 +5,9 @@ import tf
 import sensor_msgs
 
 def transform_to_joy(translation, rotation):
+    """Convert a transformation to a joystick message
+    :param translation a 3-tuple with the x,y,z value
+    :param rotation a 4-tuple with the x,y,z,w values of a quaternion"""
     return sensor_msgs.msg.Joy()
 
 if __name__ == "__main__":
