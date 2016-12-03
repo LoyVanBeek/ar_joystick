@@ -4,11 +4,16 @@ import rospy
 import tf
 import sensor_msgs
 
+from tf import transformations
+
 def transform_to_joy(translation, rotation):
     """Convert a transformation to a joystick message
-    :param translation a 3-tuple with the x,y,z value
-    :param rotation a 4-tuple with the x,y,z,w values of a quaternion"""
-    return sensor_msgs.msg.Joy()
+    :param translation a 3-tuple with the x, y, z value
+    :param rotation a 4-tuple with the x, y, z, w values of a quaternion"""
+
+    euler = transformations.euler_from_quaternion(rotation)  # (rx, ry, rz)
+    axes = translation + euler # concatenate the lists, so our virtual joystick has 6 axes: tx, ty, tz and rx, ry, rz
+    return sensor_msgs.msg.Joy(axes=axes, buttons=[])  # We have no virtual buttons
 
 if __name__ == "__main__":
     rospy.init_node("ar_joy_node")
