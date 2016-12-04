@@ -1,8 +1,12 @@
 <launch>
+    <include file="$(find ar_joystick)/launch/indiv_no_kinect.launch"/>
+
+    <node name="ar_joy_node" pkg="ar_joystick" type="ar_joystick.py"/>
+
     <node name="joy_to_cmdvel" pkg="teleop_twist_joy" type="teleop_node">
-    	<param name="enable_button" value="0" />
-    	<param name="axis_linear" value="0" />
-    	<param name="axis_angular" value="3" />
+        <param name="enable_button" value="0" />
+        <param name="axis_linear" value="0" />
+        <param name="axis_angular" value="3" />
     </node>
 </launch>
 
