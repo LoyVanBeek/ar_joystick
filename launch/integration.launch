@@ -1,0 +1,8 @@
+<launch>
+    <node name="joy_to_cmdvel" pkg="teleop_twist_joy" type="teleop_node">
+    	<param name="enable_button" value="0" />
+    	<param name="axis_linear" value="0" />
+    	<param name="axis_angular" value="3" />
+    </node>
+</launch>
+
