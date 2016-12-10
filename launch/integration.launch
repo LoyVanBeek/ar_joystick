@@ -1,12 +1,15 @@
 <launch>
     <include file="$(find ar_joystick)/launch/indiv_no_kinect.launch"/>
+    <include file="$(find usb_cam)/launch/usb_cam-test.launch"/>
 
     <node name="ar_joy_node" pkg="ar_joystick" type="ar_joystick.py"/>
 
     <node name="joy_to_cmdvel" pkg="teleop_twist_joy" type="teleop_node">
         <param name="enable_button" value="0" />
-        <param name="axis_linear" value="0" />
-        <param name="axis_angular" value="3" />
+        <param name="axis_linear" value="2" />
+        <param name="axis_angular" value="0" />
+        <param name="scale_linear" value="1.5" />
+        <param name="scale_angular" value="10.0" />
     </node>
 
     <node name="simulation" pkg="turtlesim" type="turtlesim_node">
@@ -14,3 +17,5 @@
     </node>
 </launch>
 
+<!--<remap to="/amigo/base/references" from="/cmd_vel"/>
+    </node>-->
