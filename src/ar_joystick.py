@@ -34,17 +34,17 @@ if __name__ == "__main__":
 
     while not rospy.is_shutdown():  # ctrl-C makes this return True
         try:
-	    now = rospy.Time.now() - rospy.Duration(0.15)
-            (trans,rot) = listener.lookupTransform(ORIGIN, TARGET, now)  
+            now = rospy.Time.now() - rospy.Duration(0.15)
+            (trans,rot) = listener.lookupTransform(ORIGIN, TARGET, now)
 
             joy_msg = transform_to_joy(trans, rot)
-	    joy_msg.buttons = [True]
+            joy_msg.buttons = [True]
             joy_publisher.publish(joy_msg)
         except (tf.LookupException, tf.ConnectivityException, tf.ExtrapolationException) as tf_exception:
             # Go on even if things break, but at least log them
             # rospy.logerr(tf_exception)
-	    joy_msg = sensor_msgs.msg.Joy(axes=[0,0,0,0,0,0], buttons=[False])
-	    joy_publisher.publish(joy_msg)
+            joy_msg = sensor_msgs.msg.Joy(axes=[0,0,0,0,0,0], buttons=[False])
+            joy_publisher.publish(joy_msg)
             continue
 
         rate.sleep()  # Make node wait for the next tick at the intended frequency
