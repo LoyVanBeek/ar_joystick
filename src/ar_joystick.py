@@ -30,8 +30,6 @@ if __name__ == "__main__":
 
     rate = rospy.Rate(10.0)  # What frequency runs our node on, roughly
 
-    listener.waitForTransform(ORIGIN, TARGET, rospy.Time(0), rospy.Duration(100))
-
     while not rospy.is_shutdown():  # ctrl-C makes this return True
         try:
             now = rospy.Time.now() - rospy.Duration(0.15)
